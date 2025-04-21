@@ -5,10 +5,11 @@ import (
 )
 
 type AddUrlArgs struct {
-	Url     string
-	UID     string
-	TempDir string
-	Signal  chan int
+	Url         string
+	UID         string
+	TempDir     string
+	Signal      chan int
+	DstFilename string
 }
 
 type Status struct {

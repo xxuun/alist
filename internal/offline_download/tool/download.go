@@ -17,6 +17,7 @@ type DownloadTask struct {
 	task.TaskExtension
 	Url               string       `json:"url"`
 	DstDirPath        string       `json:"dst_dir_path"`
+	DstFileName       string       `json:"dst_file_name"`
 	TempDir           string       `json:"temp_dir"`
 	DeletePolicy      DeletePolicy `json:"delete_policy"`
 	Toolname          string       `json:"toolname"`

@@ -13,7 +13,7 @@ import (
 )
 
 type Client interface {
-	AddFromLink(link string, savePath string, id string) error
+	AddFromLink(link string, savePath string, id string, filename string) error
 	GetInfo(id string) (TorrentInfo, error)
 	GetFiles(id string) ([]FileInfo, error)
 	Delete(id string, deleteFiles bool) error
@@ -117,7 +117,7 @@ func (c *client) post(path string, data url.Values) (*http.Response, error) {
 	return resp, nil
 }
 
-func (c *client) AddFromLink(link string, savePath string, id string) error {
+func (c *client) AddFromLink(link string, savePath string, id string, filename string) error {
 	err := c.checkAuthorization()
 	if err != nil {
 		return err
@@ -136,6 +136,9 @@ func (c *client) AddFromLink(link string, savePath string, id string) error {
 	addField("savepath", savePath)
 	addField("tags", "alist-"+id)
 	addField("autoTMM", "false")
+	if filename != "" {
+		addField("rename", filename)
+	}
 	if err != nil {
 		return err
 	}

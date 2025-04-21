@@ -74,7 +74,7 @@ func (t *Thunder) AddURL(args *tool.AddUrlArgs) (string, error) {
 		return "", err
 	}
 
-	task, err := thunderDriver.OfflineDownload(ctx, args.Url, parentDir, "")
+	task, err := thunderDriver.OfflineDownload(ctx, args.Url, parentDir, args.DstFilename)
 	if err != nil {
 		return "", fmt.Errorf("failed to add offline download task: %w", err)
 	}

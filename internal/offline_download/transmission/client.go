@@ -81,6 +81,7 @@ func (t *Transmission) AddURL(args *tool.AddUrlArgs) (string, error) {
 
 	rpcPayload := transmissionrpc.TorrentAddPayload{
 		DownloadDir: &args.TempDir,
+		Filename:    &args.DstFilename,
 	}
 	// http url for .torrent file
 	if endpoint.Scheme == "http" || endpoint.Scheme == "https" {

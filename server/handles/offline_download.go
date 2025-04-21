@@ -249,6 +249,7 @@ type AddOfflineDownloadReq struct {
 	Path         string   `json:"path"`
 	Tool         string   `json:"tool"`
 	DeletePolicy string   `json:"delete_policy"`
+	Filename     string   `json:"file_name"`
 }
 
 func AddOfflineDownload(c *gin.Context) {
@@ -275,6 +276,7 @@ func AddOfflineDownload(c *gin.Context) {
 			DstDirPath:   reqPath,
 			Tool:         req.Tool,
 			DeletePolicy: tool.DeletePolicy(req.DeletePolicy),
+			DstFileName:  req.Filename,
 		})
 		if err != nil {
 			common.ErrorResp(c, err, 500)

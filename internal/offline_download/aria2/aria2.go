@@ -64,6 +64,9 @@ func (a *Aria2) AddURL(args *tool.AddUrlArgs) (string, error) {
 	options := map[string]interface{}{
 		"dir": args.TempDir,
 	}
+	if args.DstFilename != "" {
+		options["out"] = args.DstFilename
+	}
 	gid, err := a.client.AddURI([]string{args.Url}, options)
 	if err != nil {
 		return "", err

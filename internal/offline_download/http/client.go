@@ -71,7 +71,9 @@ func (s SimpleHttp) Run(task *tool.DownloadTask) error {
 		urlPath = strings.ReplaceAll(_u.Host, ".", "_")
 	}
 	filename := path.Base(urlPath)
-	if n, err := parseFilenameFromContentDisposition(resp.Header.Get("Content-Disposition")); err == nil {
+	if task.DstFileName != "" {
+		filename = task.DstFileName
+	} else if n, err := parseFilenameFromContentDisposition(resp.Header.Get("Content-Disposition")); err == nil {
 		filename = n
 	}
 	// save to temp dir

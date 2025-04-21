@@ -34,6 +34,7 @@ type AddURLArgs struct {
 	DstDirPath   string
 	Tool         string
 	DeletePolicy DeletePolicy
+	DstFileName  string
 }
 
 func AddURL(ctx context.Context, args *AddURLArgs) (task.TaskExtensionInfo, error) {
@@ -112,6 +113,7 @@ func AddURL(ctx context.Context, args *AddURLArgs) (task.TaskExtensionInfo, erro
 		},
 		Url:          args.URL,
 		DstDirPath:   args.DstDirPath,
+		DstFileName:  args.DstFileName,
 		TempDir:      tempDir,
 		DeletePolicy: deletePolicy,
 		Toolname:     args.Tool,
